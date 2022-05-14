@@ -1,7 +1,25 @@
 import math 
 import numpy as np
+
+import sys
+import argparse
  
-nums = np.genfromtxt("task4/nums.txt", delimiter='\t', dtype=np.int64)
+def createParser ():
+    parser = argparse.ArgumentParser()
+    parser.add_argument ('-n', '--name', type=argparse.FileType())
+ 
+    return parser
+ 
+ 
+if __name__ == '__main__':
+    parser = createParser()
+    namespace = parser.parse_args(sys.argv[1:])
+ 
+    text = namespace.name.read()
+    result = [int(item) for item in text.split()]
+
+
+nums = result
 result_digit = math.ceil((max(nums))/2)
 count = 0
 for id, i in enumerate(nums):
